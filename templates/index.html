@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Rep Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Workout Rep Tracker</h1>
+        <select id="exercise-filter">
+            <option value="">All</option>
+            <option value="squat">Squat</option>
+            <option value="curl">Curl</option>
+            <option value="pushup">Push-up</option>
+        </select>
+    </header>
+    
+    <div id="empty-state" class="hidden">
+        No sessions yet. Run the tracker to record one.
+    </div>
+
+    <main id="dashboard-content">
+        <div class="stats-grid">
+            <div class="card"><h3>Sessions</h3><p id="stat-sessions">0</p></div>
+            <div class="card"><h3>Total reps</h3><p id="stat-total">0</p></div>
+            <div class="card"><h3>Best squat</h3><p id="stat-best-squat">0</p></div>
+            <div class="card"><h3>Best curl</h3><p id="stat-best-curl">0</p></div>
+        </div>
+
+        <div class="chart-container card">
+            <h3>Reps per day</h3>
+            <canvas id="repsChart"></canvas>
+        </div>
+
+        <div class="table-container card">
+            <h3>Session history</h3>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Exercise</th>
+                            <th>Reps</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="/static/app.js"></script>
+</body>
+</html>
