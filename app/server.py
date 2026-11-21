@@ -22,7 +22,7 @@ def create_app(db_path=None):
             return jsonify({'error': 'invalid input'}), 400
         if reps < 0 or duration < 0:
             return jsonify({'error': 'invalid input'}), 400
-        return jsonify({'id': db.add_session(exercise, reps, duration, db_path)}), 201
+        return jsonify({'id': db.add_session(exercise, reps, duration, path=db_path)}), 201
 
     @app.get('/api/stats')
     def stats():
