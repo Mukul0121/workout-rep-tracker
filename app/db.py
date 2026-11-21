@@ -1,4 +1,5 @@
 import sqlite3
+import json
 from datetime import datetime
 
 DB_PATH = 'data/workouts.db'
@@ -15,14 +16,16 @@ def init_db(path=None):
             exercise TEXT NOT NULL,
             reps INTEGER NOT NULL CHECK (reps >= 0),
             duration_sec INTEGER NOT NULL CHECK (duration_sec >= 0),
+            tut_sec REAL DEFAULT 0.0,
+            rep_tempos TEXT DEFAULT '[]',
             created_at TEXT NOT NULL)''')
 
-def add_session(exercise, reps, duration_sec, path=None):
+def add_session(exercise, reps, duration_sec, tut_sec=0.0, rep_tempos='[]', path=None):
     init_db(path)
     with get_connection(path) as conn:
         cur = conn.execute(
-            'INSERT INTO sessions (exercise, reps, duration_sec, created_at) VALUES (?, ?, ?, ?)',
-            (exercise, reps, duration_sec, datetime.now().isoformat(timespec='seconds')))
+            'INSERT INTO sessions (exercise, reps, duration_sec, tut_sec, rep_tempos, created_at) VALUES (?, ?, ?, ?, ?, ?)',
+            (exercise, reps, duration_sec, tut_sec, rep_tempos, datetime.now().isoformat(timespec='seconds')))
         return cur.lastrowid
 
 def list_sessions(exercise=None, path=None):

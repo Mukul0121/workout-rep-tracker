@@ -10,12 +10,23 @@
 <body>
     <header>
         <h1>Workout Rep Tracker</h1>
-        <select id="exercise-filter">
-            <option value="">All</option>
-            <option value="squat">Squat</option>
-            <option value="curl">Curl</option>
-            <option value="pushup">Push-up</option>
-        </select>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="nerd-toggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label" id="nerd-label">Stats for Nerds</span>
+            </div>
+            <select id="exercise-filter">
+                <option value="">All</option>
+                <option value="squat">Squat</option>
+                <option value="curl">Curl</option>
+                <option value="pushup">Push-up</option>
+                <option value="bench">Bench Press</option>
+                <option value="deadlift">Deadlift</option>
+            </select>
+        </div>
     </header>
     
     <div id="empty-state" class="hidden">
@@ -45,9 +56,16 @@
                             <th>Exercise</th>
                             <th>Reps</th>
                             <th>Duration</th>
+                            <th class="nerd-col hidden">TUT</th>
+                            <th class="nerd-col hidden">Tempo</th>
                         </tr>
-                    </thead>
+                    </thead>                    
                     <tbody id="table-body">
+                        <dialog id="tempo-modal" class="card" style="background: var(--bg-grad); border: 1px solid var(--accent); color: white; border-radius: 16px; padding: 30px; max-width: 400px; margin: auto;">
+                            <h3 style="margin-top: 0; color: var(--accent);">Per-Rep Breakdown</h3>
+                            <div id="tempo-list" style="max-height: 300px; overflow-y: auto; margin-bottom: 20px; font-family: monospace;"></div>
+                            <button onclick="document.getElementById('tempo-modal').close()" style="background: var(--accent); color: #000; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%;">Close</button>
+                        </dialog>
                     </tbody>
                 </table>
             </div>

@@ -4,6 +4,7 @@ import mediapipe as mp
 from .angles import calculate_angle
 from .counter import RepCounter
 from . import db
+import json
 
 mp_pose = mp.solutions.pose
 mp_draw = mp.solutions.drawing_utils
@@ -41,5 +42,11 @@ def run(exercise, side='LEFT'):
     cap.release()
     cv2.destroyAllWindows()
     if counter.reps > 0:
-        db.add_session(exercise, counter.reps, int(time.time() - started))
+        db.add_session(
+            exercise, 
+            counter.reps, 
+            int(time.time() - started), 
+            round(counter.total_tut, 1), 
+            json.dumps(counter.rep_data)
+        )
     return counter.reps
