@@ -32,7 +32,7 @@ A Python computer vision application that uses a webcam to track body joints in 
 ## Setup & Execution
 1. Clone the repository and navigate to the project directory:
    ```bash
-   git clone [https://github.com/Mukul0121/workout-rep-tracker.git](https://github.com/Mukul0121/workout-rep-tracker.git)
+   git clone https://github.com/Mukul0121/workout-rep-tracker.git
    cd workout-rep-tracker
    ```
 2. Create and activate a virtual environment:
